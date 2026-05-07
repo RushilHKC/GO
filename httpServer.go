@@ -4,11 +4,11 @@ import (
 	"net/http"
 )
 
-type server struct {
+type api struct {
 	addr string
 }
 
-func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (s *api) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	switch r.Method {
 	case http.MethodGet:
@@ -26,7 +26,26 @@ func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func (a *api) getUsersHandler(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("return users list"))
+}
+
+func (a *api) createUsersHandler(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Create User"))
+}
+
 func main() {
-	s := &server{":8080"}
-	http.ListenAndServe(s.addr, s)
+	api := &api{":8080"}
+
+	mux := http.NewServeMux()
+
+	server := &http.Server{
+		Addr:    api.addr,
+		Handler: mux,
+	}
+
+	mux.HandleFunc("GET /users", api.getUsersHandler)
+	mux.HandleFunc("POST /users", api.createUsersHandler)
+
+	server.ListenAndServe()
 }
