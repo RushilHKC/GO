@@ -17,7 +17,7 @@ func main() {
 	defer conn.Close()
 
 	//write to the server
-	fmt.Fprintf(conn, "GET /index.html\n")
+	fmt.Fprintf(conn, "GET /users\n")
 
 	//Read the response from the server
 	bs := make([]byte, 1024)
@@ -28,7 +28,5 @@ func main() {
 	}
 
 	fmt.Println(string(bs[:n]))
-
-	
 
 }
