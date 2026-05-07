@@ -26,13 +26,13 @@ func (s *api) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (a *api) getUsersHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("return users list"))
-}
+// func (a *api) getUsersHandler(w http.ResponseWriter, r *http.Request) {
+// 	w.Write([]byte("return users list"))
+// }
 
-func (a *api) createUsersHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Create User"))
-}
+// func (a *api) createUsersHandler(w http.ResponseWriter, r *http.Request) {
+// 	w.Write([]byte("Create User"))
+// }
 
 func main() {
 	api := &api{":8080"}
