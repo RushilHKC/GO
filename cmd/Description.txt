@@ -1,0 +1,1 @@
+Executables and entry points of the applications are kept in cmd folder

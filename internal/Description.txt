@@ -1,0 +1,6 @@
+holds all the internal packages
+all the files in here should be isolated packages 
+Interaction with database 
+Doing data validation
+Sending emails 
+rate limiter implementation 

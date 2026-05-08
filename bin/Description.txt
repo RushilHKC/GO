@@ -1,0 +1,2 @@
+This Folder contains compiled applications
+all the compiled binaries are kept in this "bin" folder.

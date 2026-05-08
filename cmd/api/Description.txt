@@ -1,0 +1,1 @@
+All the server realted files are kept in api folder
