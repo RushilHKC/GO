@@ -21,7 +21,7 @@ func (app *application) healthcheck(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("OK"))
 }
 
-func (app *application) mount() *chi.Mux {
+func (app *application) mount() http.Handler {
 	// mux := http.NewServeMux()
 
 	// mux.HandleFunc("GET /v1/health", app.healthcheck)
@@ -42,7 +42,7 @@ func (app *application) mount() *chi.Mux {
 	return r
 }
 
-func (app *application) run(mux *chi.Mux) error {
+func (app *application) run(mux http.Handler) error {
 
 	srv := http.Server{
 		Addr:         app.config.addr,
