@@ -1,6 +1,10 @@
 package main
 
-import "net/http"
+import (
+	"log"
+	"net/http"
+	"time"
+)
 
 type application struct {
 	config config
@@ -14,9 +18,14 @@ func (app *application) run() error {
 	mux := http.NewServeMux()
 
 	srv := http.Server{
-		Addr:    app.config.addr,
-		Handler: mux,
+		Addr:         app.config.addr,
+		Handler:      mux,
+		WriteTimeout: time.Second * 30, //if the server takes more than 30 sec's to write a response to the client then its going to timeOut
+		ReadTimeout:  time.Second * 10, //if the client takes more than 10 sec's to read the response from the server then its goind to timeOut
+		IdleTimeout:  time.Minute,
 	}
+
+	log.Printf("server started at %s", app.config.addr)
 
 	return srv.ListenAndServe()
 }
